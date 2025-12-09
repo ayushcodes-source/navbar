@@ -1,0 +1,154 @@
+/* ======================== */
+/* BASE & DESKTOP STYLES    */
+/* ======================== */
+
+.pill-nav {
+    background-color: #f0f0f5;
+    padding: 15px 30px; /* Reduced padding for cleaner look */
+    display: flex; /* Enables Flexbox for layout */
+    justify-content: space-between; /* Pushes Logo, Links, and Button apart */
+    align-items: center;
+    position: relative; /* Needed for absolute positioning on mobile */
+}
+
+/* --- Logo Styling (Top-Left) --- */
+.pill-nav .nav-logo {
+    color: #7c4dff;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* --- Main Pill Menu Styling (Center) --- */
+.pill-nav .nav-links {
+    list-style: none;
+    display: inline-flex;
+    padding: 5px;
+    margin: 0;
+    border-radius: 50px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.pill-nav .nav-links li a {
+    color: #7c4dff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: 500;
+    display: block;
+}
+
+.pill-nav .nav-links li a:hover {
+    background-color: #7c4dff;
+    color: white;
+}
+
+/* --- Get Started Button Styling (Top-Right) --- */
+.pill-nav .btn-get-started {
+    background-color: #ff4500; /* Red/Orange Button */
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.pill-nav .btn-get-started:hover {
+    background-color: #cc3700;
+}
+
+/* Hide mobile-specific elements on desktop */
+.pill-nav .navbar-header {
+    display: flex;
+    align-items: center;
+}
+.pill-nav .menu-toggle,
+.pill-nav .hamburger-btn {
+    display: none;
+}
+
+
+/* ======================== */
+/* RESPONSIVE (MOBILE) STYLES */
+/* ======================== */
+
+@media (max-width: 768px) {
+    .pill-nav {
+        /* Align only the logo and the hamburger button */
+        padding: 15px 20px;
+        flex-wrap: wrap; /* Allows items to stack on mobile */
+    }
+
+    /* Pushes logo to left, hamburger/button to right */
+    .pill-nav .navbar-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* --- Hamburger Button (Visible on Mobile) --- */
+    .pill-nav .hamburger-btn {
+        display: block;
+        font-size: 2em;
+        line-height: 0.5;
+        cursor: pointer;
+        color: #7c4dff;
+        order: 2; /* Move it to the right */
+        margin-left: 20px;
+    }
+
+    /* Hide the desktop action button */
+    .pill-nav .nav-action {
+        display: none;
+    }
+
+    /* --- Menu Links (Hidden by Default) --- */
+    .pill-nav .nav-links {
+        /* Collapse and style as a vertical menu on mobile */
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: none; /* Remove the pill box-shadow */
+        padding: 0;
+        margin-top: 10px;
+    }
+    
+    .pill-nav .nav-links li {
+        width: 100%;
+    }
+
+    .pill-nav .nav-links li a {
+        /* Make links full width and remove pill shape */
+        border-radius: 0;
+        padding: 15px 20px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    /* --- Get Started Button inside the Mobile Menu --- */
+    /* Add the button to the end of the mobile list */
+    .pill-nav .nav-links::after {
+        content: "Get Started";
+        display: block;
+        padding: 15px 20px;
+        margin: 10px 0 0 0;
+        background-color: #ff4500;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        /* Optional: match the bottom rounding */
+        border-radius: 0 0 10px 10px; 
+    }
+
+    /* --- Toggle Logic using the Checkbox --- */
+    .pill-nav .menu-toggle:checked ~ .nav-links {
+        display: flex; /* Show the menu when checkbox is checked */
+    }
+}
